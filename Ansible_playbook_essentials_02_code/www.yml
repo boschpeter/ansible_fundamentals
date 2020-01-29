@@ -7,8 +7,6 @@
   roles:
      - nginx
   post_tasks:
-     - shell: echo 'I":" Done configuring nginx web server...'
-       args:
-       executable: /bin/bash     
+     - shell: echo 'I":" Done configuring nginx web server...'   
 
 

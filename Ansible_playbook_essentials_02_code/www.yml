@@ -1,12 +1,14 @@
 ---
 - hosts: all
-  # remote_user: boscp08
+  remote_user: boscp08
   become: true
   pre_tasks:
-     - shell: echo 'I":" Beginning to configure web server..'
+    - shell: echo 'I":" Beginning to configure web server..'
   roles:
      - nginx
   post_tasks:
      - shell: echo 'I":" Done configuring nginx web server...'
+       args:
+       executable: /bin/bash     
 
 

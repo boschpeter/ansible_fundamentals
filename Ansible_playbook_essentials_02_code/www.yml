@@ -1,8 +1,8 @@
 ---
-- hosts: www
-  remote_user: vagrant
-  sudo: yes
-  pre_tasks:
+- hosts: all
+  remote_user: boscp08
+  become: true
+    pre_tasks:
      - shell: echo 'I":" Beginning to configure web server..'
   roles:
      - nginx

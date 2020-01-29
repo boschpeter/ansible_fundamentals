@@ -3,8 +3,10 @@
 # This is the custom ansible 'hosts' file.
 
 [dingofarm_workers]
-ubuntuvbx ansible_user=boscp08
-ubuntuvbx2 ansible_user=boscp08
+#10.248.78.107 ansible_user=boscp08 #ubuntuvbx
+#10.248.78.9 ansible_user=boscp08  #ubuntuvbx2
+ubuntuvbx ansible_user=boscp08 #10.248.78.107
+ubuntuvbx2 ansible_user=boscp08  #10.248.78.9
 
 
 

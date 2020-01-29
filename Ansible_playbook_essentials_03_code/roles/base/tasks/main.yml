@@ -4,5 +4,5 @@
    group: name=devops state=present
  - name: create devops user with admin previleges
    user: name=devops comment="Devops User" uid=2001 group=devops
- - name: install htop package
-   action: apt name=htop state=present update_cache=yes
+ #- name: install htop package
+ #  action: apt name=htop state=present update_cache=yes

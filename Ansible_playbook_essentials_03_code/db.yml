@@ -5,7 +5,8 @@
   remote_user: boscp08
   become: true
   roles:
-     - { role: mysql, mysql_bind: "{{ ansible_eth1.ipv4.address }}" }
+  #   - { role: mysql, mysql_bind: "{{ ansible_eth1.ipv4.address }}" }
+      - { role: mysql }
 
 
 

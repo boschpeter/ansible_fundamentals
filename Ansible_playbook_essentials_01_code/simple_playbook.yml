@@ -1,21 +1,76 @@
+# ansible-playbook simple_playbook.yml -i customhosts -k  -K
 ---
-- hosts: all
-  remote_user: vagrant 
-  sudo: yes
-  tasks:
-  - group: name=devops state=present
-  - name: create devops user with admin previleges
-    user: name=devops comment="Devops User" uid=2001 group=devops
-  - name: install htop package
-    acrtion: apt name=htop state=present update_cache=yes
+#- hosts: all
+#  remote_user: boscp08
+#  become: true
+#  tasks:
+#  - group: name=devops state=present
+#  - name: create devops user with admin previleges
+#    user: name=devops comment="Devops User" uid=2001 group=devops
+#  - name: install htop package
+#    action: apt name=htop state=present update_cache=yes
 
-- hosts: www
-  user: vagrant
-  sudo: yes
+- hosts: all
+#  user: boscp08
+  become: true
   tasks:
-  - name: add official nginx repository
-    apt_repository: repo='deb http://nginx.org/packages/ubuntu/ lucid nginx'
+ # - name: add official nginx repository
+ #   apt_repository: repo='deb http://nginx.org/packages/ubuntu/ lucid nginx'
   - name: install nginx web server and ensure its at the latest version
     apt: name=nginx state=latest
   - name: 
     service: name=nginx state=started
+
+
+#boscp08s-Mac-mini:Ansible_playbook_essentials_01_code boscp08$ ansible --version
+#ansible 2.9.3
+#  config file = /Users/boscp08/Projects/scratch/virtual-insanity/ansible_fundamentals/Ansible_playbook_essentials_01_code/ansible.cfg
+#  configured module search path = ['/Users/boscp08/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
+#  ansible python module location = /usr/local/Cellar/ansible/2.9.3/libexec/lib/python3.8/site-packages/ansible
+#  executable location = /usr/local/bin/ansible
+#  python version = 3.8.1 (default, Dec 27 2019, 18:06:00) [Clang 11.0.0 (clang-1100.0.33.16)]
+
+# customhostfile
+#[www]
+#192.168.61.10 ansible_ssh_user=boscp08ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
+# This is the custom ansible 'hosts' file.
+#[dingofarm_workers]
+#ubuntuvbx ansible_user=boscp08
+#ubuntuvbx2 ansible_user=boscp08
+
+# config file for ansible -- https://ansible.com/
+# ===============================================
+## nearly all parameters can be overridden in ansible-playbook
+## or with command line flags. ansible will read ANSIBLE_CONFIG,
+## ansible.cfg in the current working directory, .ansible.cfg in
+## the home directory or /etc/ansible/ansible.cfg, whichever it
+## finds first
+
+#[defaults]
+
+## some basic default values...
+#deprecation_warnings=False
+#ansible_python_interpreter=/usr/bin/python3
+#inventory      = /etc/ansible/hosts
+
+#oscp08s-Mac-mini:Ansible_playbook_essentials_01_code boscp08$ ansible-playbook simple_playbook.yml -i customhosts -k  -K
+#SSH password: 
+#BECOME password[defaults to SSH password]: 
+#
+#PLAY [all] *************************************************************************************************************
+#
+#TASK [Gathering Facts] *************************************************************************************************
+#ok: [ubuntuvbx]
+#ok: [ubuntuvbx2]
+#
+#TASK [install nginx web server and ensure its at the latest version] ***************************************************
+#changed: [ubuntuvbx]
+#changed: [ubuntuvbx2]
+#
+#TASK [service] *********************************************************************************************************
+#ok: [ubuntuvbx2]
+#ok: [ubuntuvbx]
+#
+#PLAY RECAP *************************************************************************************************************
+#ubuntuvbx                  : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+#ubuntuvbx2                 : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   

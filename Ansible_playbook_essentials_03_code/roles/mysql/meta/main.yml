@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  author: Gourav Shah
+  author: Theo Theunissen
   description: MySQL Database Role 
   company: PACKT
   min_ansible_version: 1.4

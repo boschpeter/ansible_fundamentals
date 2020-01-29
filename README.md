@@ -13,3 +13,4 @@ earn how to automate your CI/CD pipeline with Ansible.
 
 The following is a sample playbook that translates the infrastructure blueprint into policies enforceable by Ansible:
 
+![sample_playbook](https://github.com/boschpeter/ansible_fundamentals/blob/master/pictures/sample_playbook.PNG)

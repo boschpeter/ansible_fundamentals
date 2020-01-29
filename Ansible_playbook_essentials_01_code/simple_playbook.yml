@@ -9,7 +9,7 @@
 #    user: name=devops comment="Devops User" uid=2001 group=devops
 #  - name: install htop package
 #    action: apt name=htop state=present update_cache=yes
-
+#   apt-get install apt-transport-https
 - hosts: all
 #  user: boscp08
   become: true

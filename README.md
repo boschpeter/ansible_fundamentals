@@ -4,10 +4,11 @@ earn how to automate your CI/CD pipeline with Ansible.
 ![blueprint your infrastructure](https://github.com/boschpeter/ansible_fundamentals/blob/master/pictures/blueprinting.PNG)
 
 
-# ansible-galaxy 
+# Adding another layer – the MySQL role
+
+we have been focusing on the single tier of our infrastructure, that is, the web server layer. Writing code for just one tier is not a lot of fun. Being a cool DevOps team, we will create a multi-tier infrastructure with database, web server, and then, a load balancer. We will start creating the MySQL role next, apply everything that we have learnt so far, and extend that knowledge with a few new concepts.Here is our specification for the MySQL role:It should install the MySQL server packageIt should configure 'my.cnf', which is the main configuration for the MySQL serverIt should start the MySQL server daemonIt should support Ubuntu 12.04 as well as CentOS/RedHat Enterprise 6.xCreating the scaffolding for the roles with Ansible-GalaxySo far, we have been doing all the hard work to understand and create the directory structure required by the roles. However, to make our lives easier, Ansible ships with a tool called Ansible-Galaxy, which should help us initialize a role by creating the scaffolding automatically and could help us follow the best practices. Ansible-Galaxy actually does more than that. It's a utility to connect to the repository of the freely available Ansible roles hosted at http://galaxy.ansible.com. This is similar to the way we use CPAN or RubyGems.Let's start by initializing the MySQL 
 
 ````ansible-galaxy init --init-path  roles/ mysql````
-
 
 
 # Install, configure, and start the MySQL service on the database servers

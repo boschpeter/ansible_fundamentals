@@ -1,5 +1,5 @@
 # ansible_fundamentals
-earn how to automate your CI/CD pipeline with Ansible.
+earn how to automate your CI/CD pipeline with Ansible.Continuous delivery (CD) means frequently delivering updates to your software application. The idea is that by updating more often, you do not have to wait for a specific timed period, and your organization gets better at the process of responding to change.
 
 ![blueprint your infrastructure](https://github.com/boschpeter/ansible_fundamentals/blob/master/pictures/blueprinting.PNG)
 

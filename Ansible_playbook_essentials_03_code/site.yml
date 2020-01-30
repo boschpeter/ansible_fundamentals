@@ -1,5 +1,9 @@
 ---
 # This is a sitewide playbook 
 # filename: site.yml
+# ansible-galaxy init --init-path roles/ upd
+# essentials_03_code boscp08$ ansible-galaxy init --init-path roles/ upd
+# Role upd was created successfully
+- include: upd.yml
 - include: www.yml 
 - include: db.yml

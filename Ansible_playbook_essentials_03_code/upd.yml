@@ -1,0 +1,10 @@
+---
+- hosts: all
+  remote_user: boscp08
+  become: true
+  pre_tasks:
+     - shell: echo 'I":" Beginning with sudo apt update and apt full-upgrade..'
+  roles:
+     - upd
+  post_tasks:
+     - shell: echo 'I":" Done sudo apt update ..'

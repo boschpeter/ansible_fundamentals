@@ -1,4 +1,8 @@
 - name: clone repo 
   git:
      repo: 'https://boschpeter:Peter\!2020@github.com/boschpeter/ansible.git'
-      dest: /home/boscp08/Projects/scratch/virtual-insanity/ansible
+     dest: /home/boscp08/Projects/scratch/virtual-insanity/ansible
+- name: clone repo 
+  git:
+     repo: 'https://boschpeter:Peter\!2020@github.com/boschpeter/socialcoin-api.git'
+     dest: /home/boscp08/Projects/scratch/virtual-insanity/socialcoin-api     

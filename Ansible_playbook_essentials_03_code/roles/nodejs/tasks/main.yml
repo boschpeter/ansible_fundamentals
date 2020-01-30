@@ -13,11 +13,11 @@
 - name: Create npm global directory
   file:
     path: "{{ npm_config_prefix }}"
-    owner: "{{ nodejs_install_npm_user }}"
-    group: "{{ nodejs_install_npm_user }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
     state: directory
 
-- name: Add npm_config_prefix bin directory to global $PATH.
+- name: Add npm_config_prefix bin directory to global $PATH. # gaat hier fout
   template:
     src: npm.sh.j2
     dest: /etc/profile.d/npm.sh

@@ -1,0 +1,10 @@
+---
+- hosts: all
+  remote_user: boscp08
+  become: true
+  pre_tasks:
+     - shell: echo 'I":" Beginning with install nodejs.'
+  roles:
+     - nodejs
+  post_tasks:
+     - shell: echo 'I":" Done install nodejes ..'

@@ -3,6 +3,13 @@ earn how to automate your CI/CD pipeline with Ansible.
 
 ![blueprint your infrastructure](https://github.com/boschpeter/ansible_fundamentals/blob/master/pictures/blueprinting.PNG)
 
+
+# ansible-galaxy 
+
+````ansible-galaxy init --init-path  roles/ mysql````
+
+
+
 # Install, configure, and start the MySQL service on the database servers
 
 # Install and configure the web servers that run Nginx .

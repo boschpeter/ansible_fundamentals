@@ -1,28 +1,18 @@
 ---
-#- name: Git Clone Repo
-#  git:  #repo=git@github.com:boschpeter:Peter\!2020/ansible.git dest=/home/boscp08/Projects/scratch/virtual-insanity  update=yes force=yes accept_hostkey=yes key_file=/home/boscp08/.ssh/id_rsa
-#    repo: 'https://{{ git_user }}:{{ git_password }}@github.com/boschpeter/socialcoin-api.git'
-#    dest: /home/boscp08/Projects/scratch/virtual-insanity/socialcoin-api
-
-
 - name: ansible remove directory /home/boscp08/Projects/scratch/virtual-insanity
-  file: path=/home/boscp08/Projects/scratch/virtual-insanity state=absent
-
+  file:
+      path: /home/boscp08/Projects/scratch/virtual-insanity
+      state: absent
 - name: Create Project Directory /home/boscp08/Projects/scratch/virtual-insanity
   file: path=/home/boscp08/Projects/scratch/virtual-insanity state=directory
 
-- name: Git Clone github Repo command
-  raw:  git clone https://gitlab.com/socialcoin/socialcoin-api.git
-  args:
-     chdir:  /home/boscp08/Projects/scratch/virtual-insanity
-
+#- name: Git Clone github Repo command
+#  raw:  git clone https://gitlab.com/socialcoin/socialcoin-api.git
+#  args:
+#     chdir:  /home/boscp08/Projects/scratch/virtual-insanity
 
 - name: Git Clone github Repo command
   command:  git clone https://github.com/boschpeter/socialcoin-api.git
   args:
      chdir:  /home/boscp08/Projects/scratch/virtual-insanity
 
-#- name: Git Clone gitlab Repo command  credentials issue here
-#  command:  git clone https://gitlab.com/socialcoin/socialcoin-api.git
-#  args:
-#     chdir:  /home/boscp08/Projects/scratch/virtual-insanity

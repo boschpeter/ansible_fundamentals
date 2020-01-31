@@ -29,6 +29,12 @@ mysql_cnfpath: /etc/mysql/my.cnf
 mysql_service: mysql
 ````
 
+#r User-defined variables
+We looked at facts, which are automatically available, and the amount of data that is discovered is overwhelming. However, it does not provide us with every attribute of our infrastructure that we need. For example, Ansible can not discover:Which port we want our web server to listen to
+
+Where a variable can be defined from is a complex phenomenon, as Ansible offers abundant choices in this regard. This also offers a lot of flexibility to users to configure portions of their infrastructures divergently. For example, all Linux hosts in a production environment should use local package repositories or web servers in staging and should run on the port 8080. All this without changing the code, and driven by data alone is done, by variables.The following are the places from where Ansible accepts variables:The default directory inside a roleInventory variablesThe host_vars and group_vars parameters defined in separate directoriesThe host/group vars parameter defined in an inventory fileVariables in playbooks and role parametersThe vars directory inside a role and variables defined inside a playExtra variables provided with the -e option at runtime
+
+
 
 # Install, configure, and start the MySQL service on the database servers
 

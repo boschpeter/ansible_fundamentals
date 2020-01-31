@@ -28,3 +28,30 @@ A playbook consists of one or more plays, which map groups of hosts to well-defi
 
 ## tasks 
 Tasks are a sequence of actions performed against a group of hosts that match the pattern specified in a play. Each play typically contains multiple tasks that are run serially on each machine that matches the pattern. For example, take a look at the following code snippet:
+
+# Bringing In Your Code 
+– Custom Commands and ScriptsAnsible comes with a wide variety of built-in modules that allow us to manage various system components, for example, users, packages, network, files, and services. Ansible's battery-included approach also provides the ability to integrate the components with cloud platforms, databases, and applications such as Jira, Apache, IRC, and Nagios, and so on. However, every now and then, we would find ourselves in a position where we may not find a module that exactly does the job for us. For example, installing a package from source involves downloading it, extracting a source tarball, followed by the make command, and finally, "make install". 
+There is no single module that does this. There will also be times when we would like to bring in our existing scripts that we have spent nights creating and just have them invoked or scheduled with Ansible, for example, nightly backup scripts. Ansible's command modules would come to our rescue in such situations.In this chapter, we are going to introduce you to:How to run custom commands and scriptsAnsible command modules: raw, command, shell, and scriptHow to control the idempotence of a command moduleRegistered variablesHow to create a socialcoin application
+
+# The command modules
+
+
+
+## raw
+
+A raw module can be used to connect to the target host and install the prerequisite package before executing any Ansible code.In the case of network devices, such as routers, switches, and other embedded systems, Python may not be present at all. These devices can still be managed with Ansible simply using a raw module.Apart from these exceptions, for all other cases, it is recommended that you use either command or shell modules, as they offer ways to control when, from where, and how the commands are run.Let's take a look at the following given examples: $ 
+````ansible -i customhosts all -m raw -a "uptime" ````
+
+the preceding command connects to all the hosts in the inventory provided with customhosts using SSH, runs a raw command uptime, and returns the results. This would work even if the target host does not have Python installed. This is equivalent to writing a for loop to an ad hoc shell command on a group of hosts.The same command can be converted to a task as: 
+````
+- name: running a raw command 
+  raw: uptime
+````
+
+
+## command
+
+
+
+## shell 
+

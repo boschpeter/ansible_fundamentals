@@ -56,29 +56,47 @@
     state: present
   when: "autocomplete == True"
 
-#- name: LTS Check
-#  set_fact:
-#    nodejs_version: --lts
-#  when: "nodejs_version == 'lts'"
-
 # This scenario handles the first run/install of NVM because this will automatically
 # alias the specified version as default - This should handle most use cases
-#- name: Install Node
-#  shell: source /home/boscp08/.nvm/nvm.sh &&  bash -ic "nvm install {{ nodejs_version }}"
-#  args:
-#    executable: /bin/bash
- 
+- name: Install Node huh
+  shell: source /home/boscp08/.nvm/nvm.sh $$ bash -ic "nvm install {{ nodejs_version }}"
+  args:
+    executable: /bin/bash
   # when: "nvm_commands | length == 0 or default == False"
 
 # In the event there are multiple versions of Node being installed/used/upgraded
 # on the same machine we'll need to alias the default version accordingly
+- name: Set default version of Node if multiple versions exist
+  shell: source /home/boscp08/.nvm/nvm.sh && bash -ic "nvm alias default {{ nodejs_version }}"
+  when:  "default == True"
 
-#- name: Set default version of Node if multiple versions exist
-#  shell: source /home/boscp08/.nvm/nvm.sh &&bash -ic "nvm alias default {{ nodejs_version }}"
-#  when:  "default == True"
+- name: Run whatever nvm_commands are there
+  shell: source /home/boscp08/.nvm/nvm.sh && bash -ic "{{ item }}"
+  with_items:
+    "{{ nvm_commands }}"
+  when: "nvm_commands | length >= 1"
 
-#- name: Run whatever nvm_commands are there
-#  shell: source /home/boscp08/.nvm/nvm.sh && bash -ic "{{ item }}"
-#  with_items:
-#    "{{ nvm_commands }}"
-#  when: "nvm_commands | length >= 1"
+# Uninstall NVM
+- block:
+
+  - name: Uninstall NVM
+    file:
+      path: "{{ lookup('env','NVM_DIR') }}"
+      state: absent
+
+  - name: Remove NVM nvm_profile info
+    lineinfile:
+      regexp: '^export.+nvm\"|\[.+nvm'
+      path: "{{ nvm_profile }}"
+      state: absent
+
+  - name: Remove NVM autocomplete from nvm_profile
+    blockinfile:
+      block: |
+        [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+      marker_begin: "Installed via {{ role_repo }} START"
+      marker_end: "{{ role_repo }} END"
+      path: "{{ nvm_profile }}"
+      state: absent
+
+  when: "uninstall == True"

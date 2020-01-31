@@ -1,4 +1,3 @@
 ---
 # tasks file for clone_socialcoin
- #- include: configure.yml
- - include: clone.yml
+- include: clone.yml

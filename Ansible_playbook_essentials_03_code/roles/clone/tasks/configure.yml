@@ -1,4 +1,0 @@
-# filename: roles/clone/tasks/configure.yml
- - name: create default site configurations
-   template: src="default.conf.j2" dest=/user/boscp08 mode=0644
- 

@@ -7,5 +7,5 @@
 #- include: upd.yml
 #- include: www.yml 
 #- include: db.yml
-#- include: clone_socialcoin.yml
-- include: nodejs.yml
+- include: clone.yml
+#- include: nodejs.yml

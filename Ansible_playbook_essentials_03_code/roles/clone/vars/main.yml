@@ -1,0 +1,9 @@
+---
+# vars file for clone_socialcoin
+
+- homeDir: /home/boscp08
+- appDir : Projects/scratch/virtual-insanity
+- repo: ansible
+- account: boschpeter
+- privateKey: /Users/Boscp08/.ssh/id_rsa
+

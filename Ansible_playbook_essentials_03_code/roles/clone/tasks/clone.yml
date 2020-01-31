@@ -1,0 +1,18 @@
+#- name: clone repo ansible
+#  git:
+#     repo: 'https://boschpeter:Peter\!2020@github.com/boschpeter/ansible.git'
+#     dest: /home/boscp08/Projects/scratch/virtual-insanity/ansible
+#- name: clone repo socialcoin-api 
+#  git:
+#     repo: 'https://boschpeter:Peter\!2020@github.com/boschpeter/socialcoin-api.git'
+#     dest: /home/boscp08/Projects/scratch/virtual-insanity/socialcoin-api
+
+  - name: Create APP Directory
+    file: path={{homeDir}}/{{appDir}} state=directory
+
+  - name: Copy Private Key
+    copy: src={{privateKey}} dest={{homeDir}} mode=0600
+
+  - name: Git Clone Repo
+    git: repo=git@github.com:{{account}}/{{repo}}.git dest={{homeDir}}/{{appDir}} update=yes force=yes accept_hostkey=yes key_file={{homeDir}}/id_rsa
+    register: git_finished

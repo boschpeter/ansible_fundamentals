@@ -5,6 +5,6 @@
   pre_tasks:
      - shell: echo 'I":" Beginning with git clone https://gitlab.com/socialcoin/socialcoin-api..'
   roles:
-     - clone_socialcoin
+     - clone
   post_tasks:
      - shell: echo 'I":" Done git clone ..'

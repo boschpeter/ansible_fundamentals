@@ -6,19 +6,23 @@
 
 
 - name: ansible remove directory /home/boscp08/Projects/scratch/virtual-insanity
-  file:
-      path: /home/boscp08/Projects/scratch/virtual-insanity
-      state: absent
+  file: path=/home/boscp08/Projects/scratch/virtual-insanity state=absent
 
 - name: Create Project Directory /home/boscp08/Projects/scratch/virtual-insanity
-  file: path= state=directory
+  file: path=/home/boscp08/Projects/scratch/virtual-insanity state=directory
 
 - name: Git Clone github Repo command
-  command:  git clone https://github.com/boschpeter/ansible.git
+  raw:  git clone https://gitlab.com/socialcoin/socialcoin-api.git
   args:
      chdir:  /home/boscp08/Projects/scratch/virtual-insanity
 
-#- name: Git Clone gitlab Repo command
+
+- name: Git Clone github Repo command
+  command:  git clone https://github.com/boschpeter/socialcoin-api.git
+  args:
+     chdir:  /home/boscp08/Projects/scratch/virtual-insanity
+
+#- name: Git Clone gitlab Repo command  credentials issue here
 #  command:  git clone https://gitlab.com/socialcoin/socialcoin-api.git
 #  args:
 #     chdir:  /home/boscp08/Projects/scratch/virtual-insanity

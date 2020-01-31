@@ -34,6 +34,30 @@ We looked at facts, which are automatically available, and the amount of data th
 
 Where a variable can be defined from is a complex phenomenon, as Ansible offers abundant choices in this regard. This also offers a lot of flexibility to users to configure portions of their infrastructures divergently. For example, all Linux hosts in a production environment should use local package repositories or web servers in staging and should run on the port 8080. All this without changing the code, and driven by data alone is done, by variables.The following are the places from where Ansible accepts variables:The default directory inside a roleInventory variablesThe host_vars and group_vars parameters defined in separate directoriesThe host/group vars parameter defined in an inventory fileVariables in playbooks and role parametersThe vars directory inside a role and variables defined inside a playExtra variables provided with the -e option at runtime
 
+to be data driven. We will start templating the default.conf file for the role . The approach toward converting a file into a template would be as follows:Create the directories required to hold templates and default variables inside a role: 
+
+````
+$ mkdir roles/nginx/templates 
+$ mkdir roles/nginx/default
+````
+# templating
+
+Create roles/nginx/defaults/main.yml and store the sane defaults as follows
+````
+---
+#file: roles/nginx/defaults/main.yml 
+nginx_port: 80 
+nginx_root: /usr/share/nginx/html 
+nginx_index: index.html
+````
+
+change the task in the configure.yml file to use the template instead of the copy module:
+````
+# filename: roles/mysql/tasks/configure.yml
+ - name: create config
+   template: src="my.cnf" dest="{{ mysql_cnfpath }}" mode=0644
+````
+
 
 
 # Install, configure, and start the MySQL service on the database servers

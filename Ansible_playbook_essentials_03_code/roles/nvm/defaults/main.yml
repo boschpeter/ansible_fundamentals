@@ -7,7 +7,8 @@ role_repo: "https://github.com/morgangraphics/ansible-role-nvm"
 # Set the specific version of Node.js to install ("4.8.0", "6.11.0").
 # use lts for latest Long Term Release
 # Version numbers from Nodesource: https://github.com/nodesource/distributions
-nodejs_version: "lts"
+#nodejs_version: "lts"
+nodejs_version: "8.11.3"
 
 # NVM has a bash autocomplete functionality for when a user logs into a machine. Cool feature
 # but only works when a human logs into said machine. More of a convienence method for this role
@@ -31,8 +32,8 @@ nvm_commands: []
 
 # Options are wget, curl, git
 # Git :default dest: is the same as nvm_profile below.
-nvm_install: "wget"
-
+# nvm_install: "wget"
+nvm_install: "git"
 # NVM Profile location Options are .profile, .bashrc, .bash_profile, .zshrc"
 nvm_profile: ".bashrc"
 
@@ -40,7 +41,7 @@ nvm_profile: ".bashrc"
 nvm_source: ''
 
 # Version of NVM to install
-nvm_version: "0.35.0"
+nvm_version: "0.33.0"
 
 # Uninstall NVM
 uninstall: False

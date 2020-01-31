@@ -48,7 +48,8 @@
 
     - name: Install via git
       git:
-        dest: "{{ nvm_dir }}"
+        #dest: "{{ nvm_dir }}"
+        dest: .nvm
         repo: 'https://github.com/creationix/nvm.git .nvm'
         version: "{{ nvm_version }}"
       when: "'/git' in cmd.stdout"

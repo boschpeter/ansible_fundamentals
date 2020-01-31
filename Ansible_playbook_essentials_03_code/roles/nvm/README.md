@@ -47,7 +47,7 @@ Include the role and specify the specific version of Node.js you want to install
 - hosts: all
   roles:
     - role: ansible-role-nvm
-      nodejs_version: "8.15.0"
+      nodejs_version: "8.11.3"
 
 ```
 #### More Complex

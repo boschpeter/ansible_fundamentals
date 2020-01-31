@@ -56,6 +56,21 @@
     state: present
   when: "autocomplete == True"
 
+
+##  boscp08@ubuntuVMX:~$ sudo chmod 777 -R .nvm
+##  boscp08@ubuntuVMX:~$ nvm install v8.11.3
+#  Downloading and installing node v8.11.3...
+#  Downloading https://nodejs.org/dist/v8.11.3/node-v8.11.3-linux-x64.tar.xz...
+  ######################################################################### 100.0%
+#  Computing checksum with sha256sum
+#  Checksums matched!
+#  nvm is not compatible with the "NPM_CONFIG_PREFIX" environment variable: currently set to "/usr/local/lib/npm"
+#  Run `unset NPM_CONFIG_PREFIX` to unset it.
+## boscp08@ubuntuVMX:~$ unset NPM_CONFIG_PREFIX
+##  boscp08@ubuntuVMX:~$ nvm use v8.11.3
+#  Now using node v8.11.3 (npm v5.6.0)
+  
+
 # This scenario handles the first run/install of NVM because this will automatically
 # alias the specified version as default - This should handle most use cases
 - name: Install Node huh

@@ -6,8 +6,8 @@ role_repo: "https://github.com/morgangraphics/ansible-role-nvm"
 # Set the specific version of Node.js to install ("4.8.0", "6.11.0").
 # use lts for latest Long Term Release
 # Version numbers from Nodesource: https://github.com/nodesource/distributions
-#nodejs_version: "lts"
-nodejs_version: "8.11.3"   # <= This will be the "default" version of Node.js
+nodejs_version: "lts"
+#nodejs_version: "8.11.3"   # <= This will be the "default" version of Node.js
    
 
 # NVM has a bash autocomplete functionality for when a user logs into a machine. Cool feature
@@ -25,7 +25,7 @@ default: False
 # NVM Default directory
 # NVM documentation states you can change NVM_DIR to NVM_DIR=/usr/local/nvm bash for a global install.
 # nvm_dir: "{{ansible_env.HOME}}/.nvm"
-nvm_dir: ""
+nvm_dir: "/home/boscp08/.nvm"
 
 # AdHoc NVM Commands
 nvm_commands: []
@@ -33,7 +33,7 @@ nvm_commands: []
 # Options are wget, curl, git
 # Git :default dest: is the same as nvm_profile below.
 # nvm_install: "wget"
-# nvm_install: "git"
+#nvm_install: "git"
 nvm_install: "curl"
 # NVM Profile location Options are .profile, .bashrc, .bash_profile, .zshrc"
 nvm_profile: ".bashrc"

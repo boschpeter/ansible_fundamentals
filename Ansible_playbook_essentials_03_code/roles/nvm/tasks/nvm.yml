@@ -1,5 +1,5 @@
 ---
-# wget (deault) or curl
+# wget (default) or curl
 - block:
   - name: Check if wget or curl is installed
     command: "which {{ nvm_install }}"
@@ -25,110 +25,61 @@
   - name: Install NVM
     shell: "{{ run_command }} https://raw.githubusercontent.com/creationix/nvm/v{{ nvm_version }}/install.sh | NVM_SOURCE={{ nvm_source }} NVM_DIR={{ nvm_dir }} PROFILE={{ nvm_profile }} bash"
     args:
-      warn: false
+     warn: false
     register: nvm_result
+
+# https://stackoverflow.com/questions/53596477/ansible-install-node-with-nvm
+
+#  - name: Install node and set version should work
+#    shell: "source /home/boscp08/.nvm/nvm.sh && nvm install 8.11.3" 
+#    args:
+#      executable: /bin/bash
+
+#  - name: check NVM Version weird
+#    shell: bash -ic "nvm --version"
+#    args:
+#      executable: /bin/bash
+#    register: version_response
+
 
   when: "nvm_install == 'curl' or  nvm_install == 'wget'"
 
-# git
-- block:
-    - name: Check if git is installed
-      command: "which {{ nvm_install }}"
-      register: cmd
-
-    - name: Remove NVM nvm_profile
-      blockinfile:
-        block: |
-          export NVM_DIR="$HOME/.nvm"
-          [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-        marker_begin: "Installed via {{ role_repo }} START"
-        marker_end: "{{ role_repo }} END"
-        path: "{{ nvm_profile }}"
-        state: absent
-
-    #- name: Install via git
-    #  git:
-    #    #dest: "{{ nvm_dir }}"
-    #    dest: .nvm
-    #    repo: 'https://github.com/creationix/nvm.git .nvm'
-    #    version: "{{ nvm_version }}"
-    #  when: "'/git' in cmd.stdout"
-
-    - name: Add NVM to nvm_profile
-      blockinfile:
-        block: |
-          export NVM_DIR="$HOME/.nvm"
-          [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-        create: yes
-        marker_begin: "Installed via {{ role_repo }} START"
-        marker_end: "{{ role_repo }} END"
-        mode: 0644
-        path: "{{ nvm_profile }}"
-        state: present
-
-  when: "nvm_install == 'git'"
-
-- name: Check NVM Version
-  shell: bash -ic "nvm --version"
-  register: version_response
-
 # Autocomplete
-- name: Add NVM autocomplete to nvm_profile
-  blockinfile:
-    block: |
-      [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-    insertafter: "# This loads nvm"
-    marker_begin: "Installed via {{ role_repo }} START"
-    marker_end: "{{ role_repo }} END"
-    mode: 0644
-    path: "{{ nvm_profile }}"
-    state: present
-  when: "autocomplete == True"
+#- name: Add NVM autocomplete to nvm_profile
+#blockinfile:
+#block: |
+#  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#insertafter: "# This loads nvm"
+#marker_begin: "Installed via {{ role_repo }} START"
+#marker_end: "{{ role_repo }} END"
+#mode: 0644
+#path: "{{ nvm_profile }}"
+#state: present
 
-- name: LTS Check
-  set_fact:
-    nodejs_version: --lts
-  when: "nodejs_version == 'lts'"
+
+#- name: LTS Check
+#  set_fact:
+#    nodejs_version: --lts
+#  when: "nodejs_version == 'lts'"
 
 # This scenario handles the first run/install of NVM because this will automatically
 # alias the specified version as default - This should handle most use cases
-- name: Install Node
-  shell: bash -ic "nvm install {{ nodejs_version }}"
+#- name: Install Node
+#  shell: source /home/boscp08/.nvm/nvm.sh &&  bash -ic "nvm install {{ nodejs_version }}"
+#  args:
+#    executable: /bin/bash
+ 
   # when: "nvm_commands | length == 0 or default == False"
 
 # In the event there are multiple versions of Node being installed/used/upgraded
 # on the same machine we'll need to alias the default version accordingly
-- name: Set default version of Node if multiple versions exist
-  shell: bash -ic "nvm alias default {{ nodejs_version }}"
-  when:  "default == True"
 
-- name: Run whatever nvm_commands are there
-  shell: bash -ic "{{ item }}"
-  with_items:
-    "{{ nvm_commands }}"
-  when: "nvm_commands | length >= 1"
+#- name: Set default version of Node if multiple versions exist
+#  shell: source /home/boscp08/.nvm/nvm.sh &&bash -ic "nvm alias default {{ nodejs_version }}"
+#  when:  "default == True"
 
-# Uninstall NVM
-- block:
-
-  - name: Uninstall NVM
-    file:
-      path: "{{ lookup('env','NVM_DIR') }}"
-      state: absent
-
-  - name: Remove NVM nvm_profile info
-    lineinfile:
-      regexp: '^export.+nvm\"|\[.+nvm'
-      path: "{{ nvm_profile }}"
-      state: absent
-
-  - name: Remove NVM autocomplete from nvm_profile
-    blockinfile:
-      block: |
-        [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-      marker_begin: "Installed via {{ role_repo }} START"
-      marker_end: "{{ role_repo }} END"
-      path: "{{ nvm_profile }}"
-      state: absent
-
-  when: "uninstall == True"
+#- name: Run whatever nvm_commands are there
+#  shell: source /home/boscp08/.nvm/nvm.sh && bash -ic "{{ item }}"
+#  with_items:
+#    "{{ nvm_commands }}"
+#  when: "nvm_commands | length >= 1"

@@ -15,7 +15,7 @@
 
   - name: Git Clone Repo
     git:  #repo=git@github.com:boschpeter:Peter\!2020/ansible.git dest=/home/boscp08/Projects/scratch/virtual-insanity  update=yes force=yes accept_hostkey=yes key_file=/home/boscp08/.ssh/id_rsa
-      repo: 'https://boschpeter:Peter\!2020@github.com/boschpeter/socialcoin-api.git'
+      repo: 'https://{{ git_user }}:Peter\!2020@github.com/boschpeter/socialcoin-api.git'
       dest: /home/boscp08/Projects/scratch/virtual-insanity/socialcoin-api
       #register: git_finished
 

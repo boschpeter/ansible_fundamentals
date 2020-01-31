@@ -18,3 +18,4 @@
       repo: 'https://boschpeter:Peter\!2020@github.com/boschpeter/socialcoin-api.git'
       dest: /home/boscp08/Projects/scratch/virtual-insanity/socialcoin-api
       #register: git_finished
+

@@ -1,22 +1,24 @@
-#- name: clone repo ansible 
-#  git:
-#     repo: 'https://boschpeter:Peter\!2020@github.com/boschpeter/ansible.git'
-#     dest: /home/boscp08/Projects/scratch/virtual-insanity/ansible
-#- name: clone repo socialcoin-api 
-#  git:
-#     repo: 'https://boschpeter:Peter\!2020@github.com/boschpeter/socialcoin-api.git'
-#     dest: /home/boscp08/Projects/scratch/virtual-insanity/socialcoin-api
-  
-  #- name: Create APP Directory 
-  #  file: path=/home/boscp08/Projects/scratch/virtual-insanity state=directory
+---
+#- name: Git Clone Repo
+#  git:  #repo=git@github.com:boschpeter:Peter\!2020/ansible.git dest=/home/boscp08/Projects/scratch/virtual-insanity  update=yes force=yes accept_hostkey=yes key_file=/home/boscp08/.ssh/id_rsa
+#    repo: 'https://{{ git_user }}:{{ git_password }}@github.com/boschpeter/socialcoin-api.git'
+#    dest: /home/boscp08/Projects/scratch/virtual-insanity/socialcoin-api
 
-  #- name: Copy Private Key
-  #  copy: src={{privateKey}} dest={{homeDir}} mode=0600
 
-  - name: Git Clone Repo
-    git:  #repo=git@github.com:boschpeter:Peter\!2020/ansible.git dest=/home/boscp08/Projects/scratch/virtual-insanity  update=yes force=yes accept_hostkey=yes key_file=/home/boscp08/.ssh/id_rsa
-      repo: 'https://{{ git_user }}:{{ git_password }}@github.com/boschpeter/socialcoin-api.git'
-#      dest: {{ git_dir }} 
-      dest: /home/boscp08/Projects/scratch/virtual-insanity/socialcoin-api
-      #register: git_finished
+- name: ansible remove directory /home/boscp08/Projects/scratch/virtual-insanity
+  file:
+      path: /home/boscp08/Projects/scratch/virtual-insanity
+      state: absent
 
+- name: Create Project Directory /home/boscp08/Projects/scratch/virtual-insanity
+  file: path= state=directory
+
+- name: Git Clone github Repo command
+  command:  git clone https://github.com/boschpeter/ansible.git
+  args:
+     chdir:  /home/boscp08/Projects/scratch/virtual-insanity
+
+#- name: Git Clone gitlab Repo command
+#  command:  git clone https://gitlab.com/socialcoin/socialcoin-api.git
+#  args:
+#     chdir:  /home/boscp08/Projects/scratch/virtual-insanity

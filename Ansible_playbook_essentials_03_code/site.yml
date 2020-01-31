@@ -1,6 +1,12 @@
 ---
 # This is a sitewide playbook 
 # filename: site.yml
+# git init
+# git config --global credential.helper store
+# git config --global user.email "bosch.peter@icloud.com"
+# it config --global user.name "boschpeter"
+# git config --global user.password "
+# git config --list
 # ansible-galaxy init --init-path roles/ upd
 # essentials_03_code boscp08$ ansible-galaxy init --init-path roles/ upd
 # Role upd was created successfully

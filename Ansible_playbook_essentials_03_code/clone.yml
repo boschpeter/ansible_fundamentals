@@ -3,7 +3,7 @@
   remote_user: boscp08
   become: true
   pre_tasks:
-     - shell: echo 'I":" Beginning with git clone https://gitlab.com/socialcoin/socialcoin-api..'
+     - shell: echo 'I":" Beginning with git '
   roles:
      - clone
   post_tasks:

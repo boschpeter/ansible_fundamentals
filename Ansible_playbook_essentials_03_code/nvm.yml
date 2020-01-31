@@ -1,0 +1,12 @@
+---
+- hosts: all
+  remote_user: boscp08
+  become: true
+  pre_tasks:
+     - shell: echo 'I":" Beginning to configure nvm.'
+  roles:
+     - nvm
+  post_tasks:
+     - shell: echo 'I":" Done configuring nvm...'
+
+

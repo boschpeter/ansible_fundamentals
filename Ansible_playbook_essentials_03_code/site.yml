@@ -13,5 +13,7 @@
 #- include: upd.yml
 #- include: www.yml 
 #- include: db.yml
-- include: clone.yml
+#- include: clone.yml
 #- include: nodejs.yml
+- include: nvm.yml
+

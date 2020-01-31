@@ -41,21 +41,20 @@
 #      executable: /bin/bash
 #    register: version_response
 
-
   when: "nvm_install == 'curl' or  nvm_install == 'wget'"
 
 # Autocomplete
-#- name: Add NVM autocomplete to nvm_profile
-#blockinfile:
-#block: |
-#  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-#insertafter: "# This loads nvm"
-#marker_begin: "Installed via {{ role_repo }} START"
-#marker_end: "{{ role_repo }} END"
-#mode: 0644
-#path: "{{ nvm_profile }}"
-#state: present
-
+- name: Add NVM autocomplete to nvm_profile
+  blockinfile:
+    block: |
+      [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+    insertafter: "# This loads nvm"
+    marker_begin: "Installed via {{ role_repo }} START"
+    marker_end: "{{ role_repo }} END"
+    mode: 0644
+    path: "{{ nvm_profile }}"
+    state: present
+  when: "autocomplete == True"
 
 #- name: LTS Check
 #  set_fact:

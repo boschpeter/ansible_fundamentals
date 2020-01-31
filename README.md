@@ -10,6 +10,25 @@ we have been focusing on the single tier of our infrastructure, that is, the web
 
 ````ansible-galaxy init --init-path  roles/ mysql````
 
+#  Creating variables inside the  mysql/defaults/main.yml file:
+We will begin with the creation of variables. Let's set up the sane defaults for Debian/Ubuntu 
+inside the 
+/mysql/defaults/main.yml file:
+
+````
+#/home/boscp08/Projects/scratch/virtual-insanity/ansible_fundamentals/Ansible_playbook_essentials_03_code/roles/mysql/defaults
+---
+mysql_user: mysql
+mysql_port: 3306
+mysql_datadir: /var/lib/mysql
+mysql_bind: 127.0.0.1
+mysql_pkg: mysql-server
+mysql_pid: /var/run/mysqld/mysqld.pid
+mysql_socket: /var/run/mysqld/mysqld.sock
+mysql_cnfpath: /etc/mysql/my.cnf
+mysql_service: mysql
+````
+
 
 # Install, configure, and start the MySQL service on the database servers
 

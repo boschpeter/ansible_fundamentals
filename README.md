@@ -35,6 +35,20 @@ There is no single module that does this. There will also be times when we would
 
 # The command modules
 
+This is the most recommended module for executing commands on target nodes. This module takes the free-form command sequence and allows you to run any command that could be launched from a command-line interface. In addition to the command, we could optionally specify:Which directory to run the command fromWhich shell to use for executionWhen not to run 
+
+ ````
+ -name: run a command on target node 
+  ccommand: ls -ltr 
+  args: 
+    chdir: /etcHere
+  ````
+  
+ a command module is called to run ls -ltr on the target hosts with an argument to change the directory to /etc before running the command.In addition to writing it as a task, the command module can directly be invoked as: $ 
+ 
+ ```ansible -i customhosts all -m command -a "ls -ltr"````
+ 
+ 
 
 
 ## raw
@@ -51,7 +65,26 @@ the preceding command connects to all the hosts in the inventory provided with c
 
 ## command
 
+This is the most recommended module for executing commands on target nodes. This module takes the free-form command sequence and allows you to run any command that could be launched from a command-line interface. In addition to the command, we could optionally specify:Which directory to run the command from Which shell to use for executionWhen not to run the commands
+Let's take a look at the following example:
 
+a command module is called to run ls -ltr on the target hosts with an argument to change the directory to /etc before running the command. In addition to writing it as a task, 
+ 
+ ````the command module can directly be invoked as:  $ ansible -i customhosts all -m command -a "ls -ltr"````
 
-## shell 
-
+````
+ -name: run a command on target node 
+  command: ls -ltr 
+  args: 
+   chdir: /etcHere
+  ```` 
+ 
+## shell
+and module we just learnt about. It takes a free-form command and optional parameters and executes them on the target node. However, there are subtle differences between shell modules and command modules, which are listed, as follows:Shell runs the command through the '/bin/sh' shell on the target host, which also means that any command that gets executed with this module has access to all the shell variables on that systemUnlike the command module, shell also allows the usage of operators, such as redirects 
+Shell is less secure than a command module, as it can be affected by a shell environment on the remote hostLet's take a look at the following example:
+````
+- name: run a shell command on target node s
+  shell: ls -ltr | grep host  /tmp/hostconfigs 
+  args: 
+   chdir: /etc
+````

@@ -3,3 +3,19 @@
      upgrade: yes
      update_cache: yes
      cache_valid_time: 86400 #One day
+
+- name: Install packages
+  apt:
+    name:
+    - git
+    - net-tools
+    - curl
+    state: latest
+    cache_valid_time: 3600    # update cache if more than an hour old
+
+- name: Add bfg
+  shell: curl -o bfg.bash  https://raw.githubusercontent.com/boschpeter/waardepapieren/master/bfg.bash
+  args:
+      warn: no    
+
+    

@@ -1,0 +1,12 @@
+#[www]
+#192.168.61.10 ansible_ssh_user=boscp08ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
+# This is the custom ansible 'hosts' file.
+
+[dingofarm_workers]
+#10.248.78.107 ansible_user=boscp08 #ubuntuvbx
+#10.248.78.9 ansible_user=boscp08  #ubuntuvbx2
+ubuntuvbx ansible_user=boscp08 #10.248.78.107
+ubuntuvmx ansible_user=boscp08  #10.248.78.9
+
+
+

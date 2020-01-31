@@ -10,10 +10,10 @@
 # ansible-galaxy init --init-path roles/ upd
 # essentials_03_code boscp08$ ansible-galaxy init --init-path roles/ upd
 # Role upd was created successfully
-#- include: upd.yml
+- include: upd.yml
 #- include: www.yml 
 #- include: db.yml
 #- include: clone.yml
 #- include: nodejs.yml
-- include: nvm.yml
+#- include: nvm.yml
 
